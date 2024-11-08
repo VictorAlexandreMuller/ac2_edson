@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
 
   usuarios : any[] = []
+  autenticado : boolean = false;
 
   email : string = ''
   senha : string = ''
@@ -26,13 +27,19 @@ export class LoginComponent {
     this.usuarioServico.getUsuario().then(
       (usuarios : any[]) => {
         usuarios.forEach(usuario => {
+          console.log(usuario.email, usuario.senha);
+          console.log(this.email, this.senha);
+          
           if (usuario.email === this.email && usuario.senha === this.senha) {
             this.router.navigate(['/principal'])
-          } else {
-            alert("Usuário ou senha incorretos")
-          }
+            
+            this.autenticado = true
+          } 
+          
         });
-        
+        if (this.autenticado === false) {
+          alert("Usuário ou senha incorretos")
+        }
       },
       (error) => {
         console.log(error);
