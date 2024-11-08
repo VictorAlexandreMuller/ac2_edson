@@ -1,1 +1,31 @@
-<p>principal works!</p>
+<div class="divBody">
+  <div class="div1">
+    <div class="div2">
+      <button type="submit" class="btn btn-primary mt-3 mb-4">Filtrar</button>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Telefone</th>
+            <th scope="col">Senha</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (country of countries; track country.name; let i = $index) {
+          <tr>
+            <th scope="row">{{ i + 1 }}</th>
+            <td>
+              {{ country.name }}
+            </td>
+            <td>{{ country.area | number }}</td>
+            <td>{{ country.population | number }}</td>
+            <td></td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
