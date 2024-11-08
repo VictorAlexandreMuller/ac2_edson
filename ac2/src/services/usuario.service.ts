@@ -16,10 +16,10 @@ export class UsuarioService {
   }
 
   getLogin(email: string, senha: string) {
-    const usuarios = fetch(this.url)
+    const usuario = fetch(this.url + "?email=" + email + "&senha=" + senha)
     .then(response => response.json())
 
     
-    return "Usuário não encontrado."
+    return usuario;
   }
 }
