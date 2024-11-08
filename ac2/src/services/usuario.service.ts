@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { response } from 'express';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,21 +10,15 @@ export class UsuarioService {
 
   constructor() { }
 
-  async getUsuario() {
-    return await fetch(this.url)
+  getUsuario() {
+    return fetch(this.url)
     .then(response => response.json())
   }
 
-  async getLogin(email: string, senha: string) {
-    const usuarios = await fetch(this.url)
+  getLogin(email: string, senha: string) {
+    const usuarios = fetch(this.url)
     .then(response => response.json())
 
-
-      for (const usuario of usuarios) {
-        if (usuario.email === email && usuario.senha === senha) {
-          return usuario;
-        }
-      }  
     
     return "Usuário não encontrado."
   }
