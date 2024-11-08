@@ -23,10 +23,7 @@ export class LoginComponent {
   onSubmit() {
     this.usuarioServico.getUsuario().then(
       (usuarios : any[]) => {
-        usuarios.forEach(usuario => {
-          console.log(usuario.email, usuario.senha);
-          console.log(this.email, this.senha);
-          
+        usuarios.forEach(usuario => {        
           if (usuario.email === this.email && usuario.senha === this.senha) {
             this.router.navigate(['/principal'])
             
