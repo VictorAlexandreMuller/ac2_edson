@@ -13,7 +13,7 @@ export class LoginComponent {
   autenticado : boolean = false;
 
   email : string = ''
-  senha : any = ''
+  senha : string = ''
 
   constructor(
     private usuarioServico : UsuarioService,
@@ -21,15 +21,24 @@ export class LoginComponent {
   ) {}
 
   onSubmit() {
-    this.usuarioServico.getLogin(this.email, this.senha).then(
-      (usuario : any) => {
-      if (usuario) {
-        this.router.navigate(['/principal'])
-      } else {
-        alert("Usuário ou senha incorretos.")
-      }
-    },
-    (error) => {
+    this.usuarioServico.getUsuario().then(
+      (usuarios : any[]) => {
+        usuarios.forEach(usuario => {
+          console.log(usuario.email, usuario.senha);
+          console.log(this.email, this.senha);
+          
+          if (usuario.email === this.email && usuario.senha === this.senha) {
+            this.router.navigate(['/principal'])
+            
+            this.autenticado = true
+          } 
+          
+        });
+        if (this.autenticado === false) {
+          alert("Usuário ou senha incorretos")
+        }
+      },
+      (error) => {
         console.log(error);
         
       }
