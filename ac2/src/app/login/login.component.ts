@@ -13,35 +13,23 @@ export class LoginComponent {
   autenticado : boolean = false;
 
   email : string = ''
-  senha : string = ''
+  senha : any = ''
 
   constructor(
     private usuarioServico : UsuarioService,
     private router : Router
   ) {}
 
-  ngOnInit() {
-  }
-
   onSubmit() {
-    this.usuarioServico.getUsuario().then(
-      (usuarios : any[]) => {
-        usuarios.forEach(usuario => {
-          console.log(usuario.email, usuario.senha);
-          console.log(this.email, this.senha);
-          
-          if (usuario.email === this.email && usuario.senha === this.senha) {
-            this.router.navigate(['/principal'])
-            
-            this.autenticado = true
-          } 
-          
-        });
-        if (this.autenticado === false) {
-          alert("Usuário ou senha incorretos")
-        }
-      },
-      (error) => {
+    this.usuarioServico.getLogin(this.email, this.senha).then(
+      (usuario : any) => {
+      if (usuario) {
+        this.router.navigate(['/principal'])
+      } else {
+        alert("Usuário ou senha incorretos.")
+      }
+    },
+    (error) => {
         console.log(error);
         
       }
