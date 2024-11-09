@@ -19,10 +19,6 @@ export class PrincipalComponent {
   )
   {}
 
-  ngOnInit() {
-    this.filtrar();
-  }
-
 
   listar() {
     this.usuarioService.getUsuario().then(

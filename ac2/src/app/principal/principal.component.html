@@ -8,19 +8,29 @@
       >
         Listar
       </button>
-      <form>
+      <form #form="ngForm" (ngSubmit)="filtrar()">
         <div class="mb-3 row">
           <label
             for="table-filtering-search"
             class="col-xs-3 col-sm-auto col-form-label"
+
             >Full text search:</label
           >
+          
           <div class="col-xs-3 col-sm-auto">
             <input
+              [(ngModel)]="nome"
+              name="nome"
               id="table-filtering-search"
               class="form-control"
               type="text"
             />
+            <button
+          type="submit"
+          (click)="filtrar()"
+          class="btn btn-primary mt-3 mb-4">
+          Filtrar
+        </button>
           </div>
         </div>
       </form>
