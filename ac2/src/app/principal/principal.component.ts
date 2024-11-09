@@ -10,13 +10,9 @@ import { UsuarioService } from '../../services/usuario.service';
   styleUrl: './principal.component.scss',
 })
 export class PrincipalComponent {
-  usuarios : any[] = []
+  usuarios: any[] = [];
 
-  constructor(
-    private usuarioService : UsuarioService
-  )
-  {}
-
+  constructor(private usuarioService: UsuarioService) {}
 
   listar() {
     this.usuarioService.getUsuario().then(
@@ -25,8 +21,7 @@ export class PrincipalComponent {
       },
       (error) => {
         console.log(error);
-        
       }
-    )
+    );
   }
 }
