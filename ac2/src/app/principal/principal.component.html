@@ -1,7 +1,10 @@
 <div class="divBody">
   <div class="div1">
     <div class="div2">
+
+      <button type="submit" (click)="listar()" class="btn btn-primary mt-3 mb-4">Listar</button>
       <button type="submit" class="btn btn-primary mt-3 mb-4">Filtrar</button>
+
       <table class="table table-striped tagTabela">
         <thead>
           <tr class="tagTableHead">
@@ -13,14 +16,14 @@
           </tr>
         </thead>
         <tbody>
-          @for (country of countries; track country.name; let i = $index) {
+          @for (usuario of usuarios; track usuario.name; let i = $index) {
           <tr>
             <th scope="row">{{ i + 1 }}</th>
             <td>
-              {{ country.name }}
+              {{ usuario.nome }}
             </td>
-            <td>{{ country.area | number }}</td>
-            <td>{{ country.population | number }}</td>
+            <td>{{ usuario.email }}</td>
+            <td>{{ usuario.telefone }}</td>
             <td></td>
           </tr>
           }
