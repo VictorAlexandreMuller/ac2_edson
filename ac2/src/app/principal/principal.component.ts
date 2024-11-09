@@ -10,9 +10,19 @@ import { UsuarioService } from '../../services/usuario.service';
   styleUrl: './principal.component.scss',
 })
 export class PrincipalComponent {
-  usuarios: any[] = [];
+  usuarios : any[] = []
 
-  constructor(private usuarioService: UsuarioService) {}
+  nome : string = 'Edson Martin Feitosa'
+
+  constructor(
+    private usuarioService : UsuarioService
+  )
+  {}
+
+  ngOnInit() {
+    this.filtrar();
+  }
+
 
   listar() {
     this.usuarioService.getUsuario().then(
@@ -23,5 +33,25 @@ export class PrincipalComponent {
         console.log(error);
       }
     );
+  }
+
+  filtrar() {
+    let usuario : any[];
+    this.usuarioService.getUsuario().then(
+      (usuarios) => {
+        this.usuarios = usuarios;
+
+        this.usuarios.forEach(usuario => {
+          if (usuario.nome === this.nome) {
+            this.usuarios = [];
+            this.usuarios.push(usuario)
+          }
+        })
+      },
+      (error) => {
+        console.log(error);
+        
+      }
+    )
   }
 }
