@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
+import { UsuarioService } from '../../services/usuario.service';
 
 interface Country {
   name: string;
@@ -43,5 +44,23 @@ const COUNTRIES: Country[] = [
   styleUrl: './principal.component.scss',
 })
 export class PrincipalComponent {
-  countries = COUNTRIES;
+  usuarios : any[] = []
+
+  constructor(
+    private usuarioService : UsuarioService
+  )
+  {}
+
+
+  listar() {
+    this.usuarioService.getUsuario().then(
+      (usuarios) => {
+        this.usuarios = usuarios;
+      },
+      (error) => {
+        console.log(error);
+        
+      }
+    )
+  }
 }
